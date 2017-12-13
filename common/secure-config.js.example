@@ -1,0 +1,5 @@
+const hitBtcAuth = "publicKey:privateKey";
+
+module.exports = {
+    hitBtcAuth
+}
