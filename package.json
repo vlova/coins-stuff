@@ -3,11 +3,11 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
-  "scripts": {
-  },
+  "scripts": {},
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "fetch": "^1.1.0"
+    "fetch": "^1.1.0",
+    "prettyjson": "^1.2.1"
   }
 }

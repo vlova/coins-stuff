@@ -1,4 +1,4 @@
-var fetch = require("fetch").fetchUrl;
+const fetch = require("fetch").fetchUrl;
 
 function getByUrl(url) {
     return new Promise(function (resolve, error) {
