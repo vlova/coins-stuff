@@ -9,12 +9,16 @@ async function getHitBtcEnhancedBalance() {
     function getHitBtcRate(currency, key) {
         if (currency === primaryCurrency) return 1;
 
+        if (currency === 'IGNIS'){
+            debugger;
+        }
+
         let exchangeRate = hitBtcExchangeRates[currency][primaryCurrency];
         if (exchangeRate === undefined) {
             let bestRate = 0;
             for (let secondaryCurrency of Object.keys(hitBtcExchangeRates[currency])) {
                 const subRate = hitBtcExchangeRates[currency][secondaryCurrency][key];
-                const inPrimaryRate = subRate * getHitBtcRate(secondaryCurrency);
+                const inPrimaryRate = subRate * getHitBtcRate(secondaryCurrency, key);
                 bestRate = Math.max(inPrimaryRate || 0, bestRate);
             }
             return bestRate;
