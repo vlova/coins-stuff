@@ -47,10 +47,15 @@ async function getHitBtcExchangeRates() {
     return exchangeRates;
 }
 
+async function getHitBtcTrades(limit = 100) {
+    return await getByUrl(baseHitBtc + "/2/history/trades?&limit=" + limit);
+}
+
 module.exports = {
     baseHitBtc,
     getHitBtcBalance,
     getHitBtcSymbols,
     getHitBtcTickers,
-    getHitBtcExchangeRates
+    getHitBtcExchangeRates,
+    getHitBtcTrades
 };
