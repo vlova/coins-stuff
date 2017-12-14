@@ -14,7 +14,27 @@ async function getCryptoCompareExchangeRates(currencies) {
     return response;
 }
 
+async function getHistoryData({ type, fromCurrency, toCurrency, limit }) {
+    if (limit > 2000) {
+        throw {
+            msg: "Too large limit for historydata",
+            limit
+        };
+    }
+
+    var response = await getByUrl([
+        cryptoCompareBase,
+        "histo" + type + "?",
+        "&fsym=" + fromCurrency,
+        "&tsym=" + toCurrency,
+        "&limit=" + limit || 60
+    ].join(""));
+
+    return response;
+}
+
 module.exports = {
     cryptoCompareBase,
-    getCryptoCompareExchangeRates
+    getCryptoCompareExchangeRates,
+    getHistoryData
 };

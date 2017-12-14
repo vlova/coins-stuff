@@ -1,24 +1,29 @@
 const fetch = require("fetch").fetchUrl;
+var throttledQueue = require('throttled-queue');
+var throttle = throttledQueue(15, 1000); // at most 15 requests per second.
+
 
 function getByUrl(url) {
     return new Promise(function (resolve, onError) {
-        return fetch(url, {}, (error, meta, body) => {
-            if (error != undefined) {
-                onError(error);
-                return;
-            }
+        throttle(function () {
+            fetch(url, {}, (error, meta, body) => {
+                if (error != undefined) {
+                    onError(error);
+                    return;
+                }
 
-            const bodyStr = body.toString();
-            try {
-                resolve(JSON.parse(bodyStr));
-            }
-            catch (e) { 
-                onError({
-                    innerError: e,
-                    bodyStr: bodyStr
-                });
-            }
-        })
+                try {
+                    const bodyStr = body.toString();
+                    resolve(JSON.parse(bodyStr));
+                }
+                catch (e) {
+                    onError({
+                        innerError: e,
+                        bodyStr: bodyStr
+                    });
+                }
+            })
+        });
     });
 }
 

@@ -7,8 +7,12 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "console.table": "^0.9.1",
     "fetch": "^1.1.0",
+    "left-pad": "^1.2.0",
+    "limiter": "^1.1.2",
     "lodash": "^4.17.4",
-    "prettyjson": "^1.2.1"
+    "prettyjson": "^1.2.1",
+    "throttled-queue": "^1.0.5"
   }
 }
