@@ -9,6 +9,11 @@ async function getHitBtcEnhancedBalance() {
     function getHitBtcRate(currency, key) {
         if (currency === primaryCurrency) return 1;
 
+        if (hitBtcExchangeRates[currency] == null) {
+            console.log(currency);
+            return NaN;
+        }
+
         let exchangeRate = hitBtcExchangeRates[currency][primaryCurrency];
         if (exchangeRate === undefined) {
             let bestRate = 0;
