@@ -11,7 +11,7 @@ async function getHitBtcEnhancedBalance() {
 
         if (hitBtcExchangeRates[currency] == null) {
             console.log(`no rates for currency: ` + currency);
-            return NaN;
+            return 0;
         }
 
         let exchangeRate = hitBtcExchangeRates[currency][primaryCurrency];
