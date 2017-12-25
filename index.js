@@ -1,12 +1,10 @@
 const { computeTotalBalance } = require("./fns/computeTotalBalance");
 const { getHitBtcEnhancedBalance } = require("./fns/getHitBtcEnhancedBalance");
-const { prettyWrite } = require("./common/helpers");
+const { prettyWrite, delay } = require("./common/helpers");
 const { orderBy } = require("lodash");
 
 async function main() {
     const balance = await getHitBtcEnhancedBalance();
-    const totalBalance = computeTotalBalance(balance);
-
     prettyWrite(orderBy(balance.map(i => ({
         currency: i.currency,
         inUsd: i.exchanged.hitBtcReal.totalInUsd,
@@ -14,11 +12,22 @@ async function main() {
     })), ['inUsd'], ['desc']));
 
     console.log();
+    console.log();
 
-    prettyWrite({
-        totalInUsd: totalBalance.hitBtcReal.totalInUsd,
-        totalInUsd2: totalBalance.cryptoCompare.totalInUsd
-    });
+    while (true) {
+        const balance = await getHitBtcEnhancedBalance();
+        const totalBalance = computeTotalBalance(balance);
+
+        prettyWrite({
+            totalInUsd: totalBalance.hitBtcReal.totalInUsd,
+            totalInUsd2: totalBalance.cryptoCompare.totalInUsd,
+            date: new Date()
+        });
+
+        await delay(30 * 1000);
+
+        console.log();
+    }
 }
 
 main();
