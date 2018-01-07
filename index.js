@@ -25,8 +25,9 @@ async function main() {
             const totalBalance = computeTotalBalance(balance);
 
             prettyWrite({
-                totalInUsd: totalBalance.hitBtcReal.totalInUsd,
-                totalInUsd2: totalBalance.cryptoCompare.totalInUsd,
+                "total HitBtc": totalBalance.hitBtcReal.totalInUsd,
+                "total HitBtc Speculative": totalBalance.hitBtcSpeculative.totalInUsd,
+                "total CryptoCompare": totalBalance.cryptoCompare.totalInUsd,
                 date: new Date()
             });
         }
