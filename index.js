@@ -35,7 +35,7 @@ async function main() {
             console.error(e);
         }
 
-        await delay(3 * 1000);
+        await delay(30 * 1000);
 
         console.log();
     }
